@@ -271,13 +271,90 @@ export default {
         li{
           float: left;
           padding-right: 2em;
+          .label{
+            color: $gray;
+            font-size: 0.9em;
+            font-weight: 600;
+          }
+          .value{
+            font-size: 1em;
+          }
         }
       }
     }
     .session-room-rates{
+      .header{
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
       .rooms-list{
+        padding-left: 2em;
+        padding-right: 2em;
         .room{
+          margin-bottom: 20px;
           background: #FFF;
+          border-radius: 4px;
+          box-shadow: $card-shadow;
+          .more-rates{
+            float: left;
+            width: 100%;
+            background-color: #f5f5f5;
+          }
+          .name, .price, .actions{
+            float: left;
+            height: 100%;
+            height: 84px;
+          }
+          .actions{
+            i{
+              color: $gray;
+              transition: all 0.5s ease-in-out;
+              cursor: pointer;
+              &:hover{
+                color: $primary;
+              }
+            }
+          }
+          .name{
+            padding: 1em;
+            width: 50%;
+            font-weight: 600;
+            color: $dark-gray;
+            a{
+              font-size: 0.9em;
+              font-weight: 500;
+              cursor: pointer;
+            }
+            i{
+              font-size: 18px;
+              vertical-align: middle;
+              cursor: pointer;
+              color: $gray;
+              &:hover{
+                color: $primary;
+              }
+              &.view{
+                margin-left: 10px;
+              }
+            }
+            .detail{
+              font-size: 0.8em;
+              font-weight: 500;
+            }
+          }
+          .price{
+            width: 30%;
+            text-align: right;
+            font-size: 1.3em;
+            font-weight: 600;
+            color: $primary;
+            line-height: 85px;
+          }
+          .actions{
+            width: 20%;
+            text-align: center;
+            line-height: 85px;
+          }
         }
       }
     }

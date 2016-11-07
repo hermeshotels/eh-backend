@@ -5,6 +5,7 @@ import Login from './components/Login'
 import SecureApp from './components/SecureApp'
 import Dashboard from './components/Dashboard'
 import RealTime from './components/RealTime'
+import store from './store'
 
 Vue.use(VueRouter)
 
@@ -36,5 +37,6 @@ const router = new VueRouter({
 /* eslint-disable no-new */
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')
