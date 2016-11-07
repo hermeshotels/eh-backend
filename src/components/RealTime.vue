@@ -67,7 +67,9 @@
         </ul>
       </div>
       <div class="session-room-rates">
-        <h3>Camere e tariffe inviate</h3>
+        <div class="header">
+          <h3>Camere e tariffe inviate</h3>
+        </div>
         <div class="rooms-list">
           <div class="room group">
             <div class="name">
@@ -254,114 +256,28 @@ export default {
   }
   .session-data{
     width: 49%;
-    padding: 1.5em;
-    padding-left: 4em;
-    padding-right: 4em;
+    padding-top: 1.5em;
     .header{
       padding: 0;
+      padding-left: 2em;
+      padding-right: 2em;
     }
     .session-infos{
-      margin-top: 30px;
-      margin-bottom: 30px;
-      > ul{
-        padding: 0;
-        margin: 0;
+      border-bottom: 1px solid #E1EAF5;
+      ul{
         list-style: none;
+        padding-left: 2em;
+        padding-right: 2em;
         li{
           float: left;
-          width: 33.33%;
-          .label{
-            font-weight: 600;
-            color: $gray;
-            font-size: 0.9em;
-            font-weight: 700;
-          }
-          .value{
-            font-size: 1em;
-          }
+          padding-right: 2em;
         }
       }
     }
     .session-room-rates{
       .rooms-list{
-        background: #FFF;
-        box-shadow: $card-shadow-2;
-        border-radius: 4px;
         .room{
-          .name, .actions, .price{
-            height: 80px;
-          }
-          .name, .actions, .price, .more-rates{
-            float: left;
-            padding: 1em;
-          }
-          .name{
-            width: 60%;
-            font-weight: 600;
-            line-height: 20px;
-            i.view{
-              font-size: 18px;
-              margin-left: 10px;
-              color: $gray;
-              cursor: pointer;
-              vertical-align: middle;
-              transition: all 0.4s ease-in-out;
-              &:hover{
-                color: $primary;
-              }
-            }
-            a{
-              font-weight: 400;
-              font-size: 0.9em;
-              cursor: pointer;
-            }
-          }
-          .price{
-            width: 20%;
-            font-size: 1.3em;
-            padding: 0;
-            line-height: 80px;
-            color: $primary;
-            font-weight: 600;
-            text-align: right;
-          }
-          .actions{
-            width: 20%;
-            padding: 0;
-            vertical-align: middle;
-            text-align: right;
-            padding-right: 1em;
-            line-height: 80px;
-            i{
-              vertical-align: middle;
-              font-size: 20px;
-              cursor: pointer;
-              color: $gray;
-              transition: color 0.4s ease-in-out;
-              &:hover{
-                color: $primary;
-              }
-            }
-          }
-          .more-rates{
-            width: 100%;
-            padding: 0;
-            background: #f5f5f5;
-            border-top: 1px solid #eee;
-            .rate{
-              border-bottom: 1px solid #eee;
-              &:last-child{
-                border-bottom: 0;
-              }
-              .name{
-                line-height: 18px;
-                span.detail{
-                  font-size: 0.8em;
-                  font-weight: 500;
-                }
-              }
-            }
-          }
+          background: #FFF;
         }
       }
     }
