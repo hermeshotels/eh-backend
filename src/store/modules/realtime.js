@@ -4,13 +4,13 @@ const state = {
 
 const mutations = {
   pushSession (state, session) {
+    console.log('session push')
     state.sessions.push(session)
   },
-  removeSession (state, session) {
-    var index = state.sessions.indexOf(session)
-    if (session > -1) {
-      state.sessions.splice(index, 0)
-    }
+  removeSession (state, id) {
+    state.sessions = state.sessions.filter((session) => {
+      return session.id !== id
+    })
   }
 }
 

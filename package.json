@@ -13,10 +13,13 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
+    "moment": "^2.15.2",
     "notifyjs": "^2.0.3",
+    "socket.io": "^1.5.1",
     "vue": "^2.0.1",
     "vue-chartjs": "^2.1.1",
     "vue-router": "^2.0.1",
+    "vue-socket.io": "^2.0.0",
     "vuex": "^2.0.0"
   },
   "devDependencies": {
