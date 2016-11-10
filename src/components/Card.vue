@@ -2,7 +2,7 @@
   <div class="card-wrapper">
     <div class="card-header group">
       <div class="card-title">
-        {{title}}
+        <slot name="header"></slot>
       </div>
       <div class="card-refresh">
         <i class="material-icons">refresh</i>
@@ -11,7 +11,7 @@
 
     <div class="card-data group" v-if="type === 'data'">
       <div class="card-value">
-        <slot></slot>
+        <slot name="body"></slot>
       </div>
       <div class="card-graph" v-bind:class="classObject">
         <i class="material-icons" v-if="trend === 'positive'">trending_up</i>
@@ -58,7 +58,7 @@
     </div>
 
     <div class="card-comment">
-      {{tip}}
+      <slot name="tip"></slot>
     </div>
 
   </div>
@@ -69,13 +69,7 @@ export default {
   props: {
     type: {
       type: String,
-      default: 'card'
-    },
-    title: {
-      type: String
-    },
-    tip: {
-      type: String
+      default: 'data'
     },
     trend: {
       type: String,

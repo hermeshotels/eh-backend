@@ -32,62 +32,86 @@ i{
   vertical-align: middle;
 }
 body{
-  background-color: #f2f7fd;
-  background: #f2f7fd;
+  background-color: $bg-primary;
+  background: $bg-primary;
   padding: 0;
   margin: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Avenir", "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
 }
-h1,h2,h3,h4,h5{
-  font-family: 'Raleway', sans-serif;
-  color: $primary;
-  small{
-    font-weight: 400;
-  }
+
+.fheight{
+  height: 100%;
 }
-h3{
-  font-size: 1.2em;
-}
-a{
-  color: $primary;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 0.5s ease-in-out;
-  &:hover{
-    color: $primary-link-hover;
-  }
-}
-.text-center{
-  text-align: center;
-}
-.container{
-  width: 90%;
-  margin: 0 auto;
-  max-width: 1100px;
-}
-.group:before,
+
 .group:after {
-    content: "";
-    display: table;
+  content: "";
+  display: table;
+  clear: both;
 }
-.group:after {
-    clear: both;
-}
-.group {
-    zoom: 1; /* For IE 6/7 (trigger hasLayout) */
-}
-.padded{
-  padding-left: 1em;
-  padding-right: 1em;
+
+.page{
+  padding-left: 3em;
+  padding-right: 3em;
+  padding-top: 2em;
+  h1{
+    font-size: 2em;
+    line-height: 25px;
+    &.primary{
+      color: $primary;
+    }
+    small{
+      font-size: 60%;
+      font-weight: 500;
+    }
+  }
 }
 
 .valign-wrapper{
   display: table;
-  width: 100%;
   height: 100%;
+  width: 100%;
   .valign{
     display: table-cell;
     vertical-align: middle;
   }
+}
+
+.text-center{
+  text-align: center;
+}
+
+h2{
+  font-size: 1.7em;
+  line-height: 23px;
+  color: $primary;
+  small{
+    font-size: 60%;
+    font-weight: 300;
+  }
+}
+
+h3{
+  font-size: 1.4em;
+  line-height: 18px;
+  color: $primary;
+  small{
+    font-size: 70%;
+    font-weight: 400;
+  }
+}
+
+h4{
+  font-size: 1em;
+  line-height: 18px;
+  color: $primary;
+  small{
+    font-weight: 400;
+    color: $silver;
+  }
+}
+
+.el-card{
+  border: 0;
+  box-shadow: $card-shadow;
 }
 </style>
