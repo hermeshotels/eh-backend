@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="card-wrapper">
+  <div class="card-wrapper" :style="{ height: height }">
     <div class="card-header group">
       <div class="card-title">
         <slot name="header"></slot>
@@ -13,11 +13,15 @@
       <div class="card-value">
         <slot name="body"></slot>
       </div>
-      <div class="card-graph" v-bind:class="classObject">
+      <div class="card-graph" v-bind:class="classObject" v-if="minichart">
         <i class="material-icons" v-if="trend === 'positive'">trending_up</i>
         <i class="material-icons" v-if="trend === 'negative'">trending_down</i>
         <i class="material-icons" v-if="trend === 'flat'">trending_flat</i>
       </div>
+    </div>
+
+    <div class="card-chart" v-if="type === 'chart'">
+      <slot name="body"></slot>
     </div>
 
     <div class="card-table" v-if="type === 'table'">
@@ -74,6 +78,14 @@ export default {
     trend: {
       type: String,
       default: 'negative'
+    },
+    minichart: {
+      type: Boolean,
+      default: true
+    },
+    height: {
+      type: String,
+      default: 'auto'
     }
   },
   computed: {
@@ -160,6 +172,10 @@ export default {
         vertical-align: middle;
       }
     }
+  }
+  .card-chart{
+    padding-left: 1em;
+    padding-right: 1em;
   }
   .card-table{
     margin-bottom: 15px;

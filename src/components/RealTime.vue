@@ -25,7 +25,7 @@ export default {
     SessionDetail
   },
   mounted () {
-    this.setSocket(io('http://192.168.111.92:3000'))
+    this.setSocket(io('http://213.203.143.133:3000'))
 
     if (notify.default.needsPermission) {
       notify.default.requestPermission()
@@ -38,12 +38,19 @@ export default {
       not.show()
       this.pushSession({
         id: '122',
-        username: 'Roberto Santececca',
-        status: 'Ricerca',
+        username: 'Utente122',
+        status: 'Selezione',
         time: new Date(),
-        params: true,
-        rooms: [1]
+        startDate: null,
+        endDate: null,
+        params: false,
+        rooms: []
       })
+    })
+
+    this.socket.on('room-search', (searchParams) => {
+      console.log('setting session parameters')
+      this.setSessionParams(searchParams)
     })
 
     this.socket.on('end-session', (id) => {
@@ -64,7 +71,9 @@ export default {
   methods: {
     ...mapMutations([
       'pushSession',
-      'removeSession'
+      'removeSession',
+      'setSocket',
+      'setSessionParams'
     ])
   }
 }

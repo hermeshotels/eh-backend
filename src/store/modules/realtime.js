@@ -12,8 +12,17 @@ const mutations = {
     state.socket = socket
   },
   pushSession (state, session) {
-    console.log('session push')
     state.sessions.push(session)
+  },
+  setSessionParams (state, params) {
+    // trovo la sessione desiderata
+    for (let i = 0; i < state.sessions.length; i++) {
+      if (state.sessions[i].id === params.id) {
+        state.sessions[i].params = true
+        state.sessions[i].startDate = params.startDate
+        state.sessions[i].endDate = params.endDate
+      }
+    }
   },
   removeSession (state, id) {
     for (let i = 0; i < state.sessions.length; i++) {

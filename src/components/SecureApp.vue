@@ -14,7 +14,7 @@
         </el-menu-item-group>
       </el-menu>
     </el-col>
-    <el-col :span="19" class="fheight">
+    <el-col :span="19" class="views fheight">
       <router-view></router-view>
     </el-col>
   </el-row>
@@ -31,6 +31,9 @@ export default {
 
 <style lang="scss">
 @import '../assets/imports.scss';
+.views{
+  overflow-y: auto;
+}
 .sidebar{
   background-color: $bg-secondary;
   border-right: 1px solid $gray;

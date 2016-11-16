@@ -1,28 +1,30 @@
 <template lang="html">
-  <el-row type="flex" justify="center" align="middle" class="fheight">
-    <el-col span="5">
-      <div class="logo">
-        <img src="../assets/logo.svg" alt="" />
-      </div>
-      <h3 class="text-center">
-        Bentornato <br>
-        <small>ti stavamo aspettando</small>
-      </h3>
+  <div class="login-wrapper">
+    <el-row type="flex" justify="center" align="middle" class="fheight">
+      <el-col span="5">
+        <div class="logo">
+          <img src="../assets/logo.svg" alt="" />
+        </div>
+        <h3 class="text-center">
+          Bentornato <br>
+          <small>ti stavamo aspettando</small>
+        </h3>
 
-      <el-form class="login-form" :model="loginForm" :rules="loginRules">
-        <el-form-item label="Email" prop="email">
-          <el-input size="large" v-model="loginForm.email"></el-input>
-        </el-form-item>
-        <el-form-item label="Password">
-          <el-input size="large" type="password" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item class="text-center">
-          <el-button type="primary" size="large" @click.native.prevent="login" :loading="loginProcess">Accedi</el-button>
-          <el-button type="text">Password smarrita?</el-button>
-        </el-form-item>
-      </el-form>
-    </el-col>
-  </el-row>
+        <el-form class="login-form" :model="loginForm" :rules="loginRules">
+          <el-form-item label="Email" prop="email">
+            <el-input size="large" v-model="loginForm.email"></el-input>
+          </el-form-item>
+          <el-form-item label="Password">
+            <el-input size="large" type="password" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item class="text-center">
+            <el-button type="primary" size="large" @click.native.prevent="login" :loading="loginProcess">Accedi</el-button>
+            <el-button type="text">Password smarrita?</el-button>
+          </el-form-item>
+        </el-form>
+      </el-col>
+    </el-row>
+  </div>
 </template>
 
 <script>
@@ -53,6 +55,13 @@ export default {
 
 <style lang="scss">
 @import '../assets/imports.scss';
+.login-wrapper{
+  height: 100%;
+  background-image: url('../assets/dash_bh.png');
+  background-repeat: repeat-x;
+  background-position: bottom;
+  background-size: 43%;
+}
 .logo{
   text-align: center;
   img{
