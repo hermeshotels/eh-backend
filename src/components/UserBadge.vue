@@ -20,7 +20,7 @@
   padding-right: 20px;
   height: 70px;
   border-bottom: 1px solid $gray;
-  background: #FFF;
+  background: $primary;
   position: relative;
   .user-avatar, .user-data{
     float: left;

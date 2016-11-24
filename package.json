@@ -20,6 +20,7 @@
     "socket.io": "^1.5.1",
     "vue": "^2.0.1",
     "vue-chartjs": "^2.1.1",
+    "vue-color": "^2.0.2",
     "vue-highcharts": "0.0.9",
     "vue-router": "^2.0.1",
     "vue-socket.io": "^2.0.0",

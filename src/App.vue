@@ -29,6 +29,14 @@ html, body, #app{
   height: 100%;
   overflow: hidden;
 }
+p{
+  color: $silver;
+  a{
+    color: $primary;
+    font-weight: 500;
+    text-decoration: none;
+  }
+}
 i{
   vertical-align: middle;
 }
@@ -57,6 +65,8 @@ body{
   h1{
     font-size: 2em;
     line-height: 25px;
+    margin: 0;
+    margin-bottom: 30px;
     &.primary{
       color: $primary;
     }
@@ -65,6 +75,11 @@ body{
       font-weight: 500;
     }
   }
+}
+
+.vue-color__chrome{
+  box-shadow: none!important;
+  border: 1px solid #dedede;
 }
 
 .valign-wrapper{

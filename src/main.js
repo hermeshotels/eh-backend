@@ -7,9 +7,12 @@ import locale from 'element-ui/lib/locale'
 import VueRouter from 'vue-router'
 import App from './App'
 import Login from './components/Login'
+import Register from './components/Register'
 import SecureApp from './components/SecureApp'
 import Dashboard from './components/Dashboard'
 import RealTime from './components/RealTime'
+import ApiManager from './components/ApiManager'
+import BolSettings from './components/BolSettings'
 import store from './store'
 
 Vue.use(VueRouter)
@@ -23,6 +26,10 @@ const routes = [
     component: Login
   },
   {
+    path: '/register',
+    component: Register
+  },
+  {
     path: '/secure',
     component: SecureApp,
     children: [
@@ -33,6 +40,14 @@ const routes = [
       {
         path: 'realtime',
         component: RealTime
+      },
+      {
+        path: 'api',
+        component: ApiManager
+      },
+      {
+        path: 'bol/settings',
+        component: BolSettings
       }
     ]
   }

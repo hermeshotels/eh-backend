@@ -167,9 +167,5 @@ export default {
 <style lang="scss">
 @import '../assets/imports.scss';
 .dashboard-wrapper{
-  h1{
-    margin: 0;
-    margin-bottom: 30px;
-  }
 }
 </style>

@@ -10,7 +10,7 @@
         </div>
       </div>
     </div>
-    <session v-for="session in sessions" :session="session"></session>
+    <session v-for="session in sessions" :session="session" :key="session.id"></session>
   </div>
 </template>
 
@@ -34,11 +34,13 @@ export default {
 .session-list-wrapper{
   .sessions-header{
     height: 70px;
+    z-index: 2;
+    position: relative;
     padding-left: 1em;
     padding-right: 1em;
     color: $primary;
     font-weight: 600;
-    border-bottom: 1px solid $light-gray;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
     h4{
       margin: 0;
       line-height: 16px;

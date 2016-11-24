@@ -1,10 +1,10 @@
 <template lang="html">
   <div class="room-rates-wrapper">
-    <div class="room group">
+    <div class="room group" v-for="room in rooms">
       <div class="detail">
         <div class="valign-wrapper">
           <div class="valign">
-            <span class="name">CLASSIC JUNIOR PLUS</span> <br>
+            <span class="name">{{room.name}}</span> <br>
             <a @click.prevent="showRates = !showRates"><i class="material-icons">expand_more</i> Tariffe aggiuntive</a>
           </div>
         </div>
@@ -14,24 +14,24 @@
           <div class="valign">
             <span class="price">300,00 €</span>
             <i class="material-icons">mode_edit</i>
-            <i class="material-icons">flash_on</i>
+            <i class="material-icons" @click="blinkroom(room.id)">flash_on</i>
           </div>
         </div>
       </div>
-      <div class="more-rates" v-show="showRates">
+      <div class="more-rates" v-for="rate in room.rates" v-show="showRates">
         <div class="rate group">
           <div class="detail">
             <div class="valign-wrapper">
               <div class="valign">
-                <span class="name">LAST SECOND RATE !!!</span> <br>
-                <span class="includes">Prima colazione, Non rimborsabile</span>
+                <span class="name">{{rate.name}}</span> <br>
+                <span class="includes">{{rate.shortDescription}}</span>
               </div>
             </div>
           </div>
           <div class="actions">
             <div class="valign-wrapper">
               <div class="valign">
-                <span class="price">300,00 €</span>
+                <span class="price">{{rate.price}} €</span>
                 <i class="material-icons">mode_edit</i>
                 <i class="material-icons">flash_on</i>
               </div>
@@ -44,10 +44,31 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
       showRates: false
+    }
+  },
+  computed: {
+    ...mapGetters({
+      socket: 'getSocket'
+    })
+  },
+  methods: {
+    blinkroom (roomid) {
+      console.log('room-blinked backend')
+      this.socket.emit('blink-room', {
+        id: '121',
+        roomid: roomid
+      })
+    }
+  },
+  props: {
+    rooms: {
+      type: Array,
+      required: true
     }
   }
 }

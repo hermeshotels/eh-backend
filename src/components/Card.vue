@@ -104,7 +104,7 @@ export default {
 @import '../assets/imports.scss';
 .card-wrapper{
   background-color: #FFF;
-  box-shadow: 0 7px 14px rgba(50,50,93,.1),0 3px 6px rgba(0,0,0,.08);
+  box-shadow: $card-shadow;
   border-radius: 4px;
   padding-top: 1em;
   padding-bottom: 1em;

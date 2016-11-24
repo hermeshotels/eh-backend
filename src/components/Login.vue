@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="login-wrapper">
     <el-row type="flex" justify="center" align="middle" class="fheight">
-      <el-col span="5">
+      <el-col :span="5">
         <div class="logo">
           <img src="../assets/logo.svg" alt="" />
         </div>
@@ -20,6 +20,7 @@
           <el-form-item class="text-center">
             <el-button type="primary" size="large" @click.native.prevent="login" :loading="loginProcess">Accedi</el-button>
             <el-button type="text">Password smarrita?</el-button>
+            <el-button type="text" class="register">Sei nuovo? Registrati!</el-button>
           </el-form-item>
         </el-form>
       </el-col>
@@ -47,7 +48,6 @@ export default {
   methods: {
     login () {
       this.loginProcess = true
-      console.log('ciao')
     }
   }
 }
@@ -67,6 +67,11 @@ export default {
   img{
     width: 100px;
     height: auto;
+  }
+}
+.login-form{
+  .register{
+    margin-top: 10px;
   }
 }
 </style>

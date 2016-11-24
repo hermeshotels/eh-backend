@@ -1,11 +1,12 @@
 <template lang="html">
   <div class="realtime-wrapper fheight">
+    <chat :active="chatActive" v-on:close-chat="chatActive = false"></chat>
     <el-row class="fheight">
-      <el-col class="sessions-list fheight" :span="7">
+      <el-col class="sessions-list fheight" :span="8">
         <session-list></session-list>
       </el-col>
-      <el-col :span="17" class="fheight">
-        <session-detail></session-detail>
+      <el-col :span="16" class="fheight">
+        <session-detail v-on:start-chat="showChat()"></session-detail>
       </el-col>
     </el-row>
   </div>
@@ -15,6 +16,8 @@
 import notify from 'notifyjs'
 import SessionList from './SessionList'
 import SessionDetail from './SessionDetail'
+import config from '../assets/config'
+import Chat from './Chat'
 import { mapGetters, mapMutations } from 'vuex'
 import io from 'socket.io-client'
 const Notificator = notify.default
@@ -22,29 +25,40 @@ const Notificator = notify.default
 export default {
   components: {
     SessionList,
-    SessionDetail
+    SessionDetail,
+    Chat
   },
   mounted () {
-    this.setSocket(io('http://213.203.143.133:3000'))
+    this.setSocket(io(config.API_URL))
 
     if (notify.default.needsPermission) {
       notify.default.requestPermission()
     }
 
-    this.socket.on('new-session', (sessionData) => {
+    const sessionid = Math.floor((Math.random() * 100) + 1)
+    this.socket.emit('new-back-session', {
+      'sessionid': sessionid,
+      'roomkey': 'brun1284'
+    })
+
+    this.socket.on('new-bol-session', (sessionData) => {
+      // Notifico la nuova connessione al browser
       let not = new Notificator('Nuovo utente', {
         body: 'un nuovo utente si è connesso al bol'
       })
       not.show()
+
+      // Salvo la nuova connessione in locale per uso futuro
       this.pushSession({
-        id: '122',
-        username: 'Utente122',
+        id: sessionData.sessionid,
+        username: 'Anonimo',
         status: 'Selezione',
         time: new Date(),
         startDate: null,
         endDate: null,
         params: false,
-        rooms: []
+        rooms: [],
+        chat: []
       })
     })
 
@@ -53,13 +67,22 @@ export default {
       this.setSessionParams(searchParams)
     })
 
-    this.socket.on('end-session', (id) => {
-      this.removeSession(id)
+    this.socket.on('rooms-list', (roomList) => {
+      this.setSessionRooms(roomList)
+    })
+
+    this.socket.on('disconnected', (sessionid) => {
+      this.removeSession(sessionid)
+    })
+
+    this.socket.on('new-message', (message) => {
+      this.pushMessage(message)
     })
   },
   data () {
     return {
-      moreRates: false
+      moreRates: false,
+      chatActive: false
     }
   },
   computed: {
@@ -73,8 +96,13 @@ export default {
       'pushSession',
       'removeSession',
       'setSocket',
-      'setSessionParams'
-    ])
+      'setSessionParams',
+      'setSessionRooms',
+      'pushMessage'
+    ]),
+    showChat () {
+      this.chatActive = true
+    }
   }
 }
 </script>
@@ -82,9 +110,11 @@ export default {
 <style lang="scss">
 @import '../assets/imports.scss';
 .realtime-wrapper{
+  position: relative;
   .sessions-list{
     background: #FFF;
     border-right: 1px solid $light-gray;
+    overflow-y: hidden;
   }
 }
 </style>

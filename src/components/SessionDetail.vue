@@ -20,6 +20,7 @@
             Dettagli sessione Wanny Miarelli <br>
             <small>gestisci la sessione in tempo reale</small>
           </h2>
+          <el-button type="primary" class="chat-button" @click="chat"><i class="material-icons">chat_bubble</i> Avvia chat</el-button>
         </el-col>
       </el-row>
 
@@ -80,7 +81,7 @@
 
       <el-row>
         <el-col :span="24">
-          <session-room-rates v-show="session.rooms.length > 0"></session-room-rates>
+          <session-room-rates v-show="session.rooms.length > 0" :rooms="session.rooms"></session-room-rates>
           <div class="no-rooms" v-show="session.rooms.length <= 0">
             L'utente non ha ancora ricevuto un elenco di offerte
           </div>
@@ -103,6 +104,11 @@ export default {
     ...mapGetters({
       session: 'selectedSession'
     })
+  },
+  methods: {
+    chat () {
+      this.$emit('start-chat')
+    }
   }
 }
 </script>
@@ -174,6 +180,12 @@ export default {
         display: block;
       }
     }
+  }
+}
+
+.chat-button{
+  i{
+    font-size: 15px;
   }
 }
 </style>

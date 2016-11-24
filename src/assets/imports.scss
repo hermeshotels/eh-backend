@@ -10,7 +10,7 @@ $danger: #FF4949;
 $gray: #9699A7;
 $warning: #fa755a;
 $light-gray: #e6e9ef;
-$card-shadow: 0 1px 6px rgba(0,0,0,0.06), 0 1px 6px rgba(0,0,0,0.05);
+$card-shadow: 0 1px 2px rgba(185, 193, 204,0.4), 0 1px 2px rgba(185, 193, 204,0.05);
 $card-shadow-2: 0 2px 6px rgba(0,0,0,0.1);
 
 $gray: #D3DCE6;
@@ -20,3 +20,29 @@ $extra-light-gray: #EFF2F7;
 $light-gray: #E5E9F2;
 $silver: #8492A6;
 $extra-light-black: #475669;
+
+@mixin card($radius) {
+  border: 1px solid;
+  border-color: #eaf0f7 #e6ebf2 #dee5ed;
+  border-radius: $radius;
+  background-color: #FFF;
+  padding: 1em;
+  margin-bottom: 30px;
+  h3{
+    margin: 0;
+    font-size: 1.3em;
+    font-weight: 500;
+    line-height: 20px;
+    small{
+      font-size: 70%;
+      color: $silver;
+    }
+    i{
+      vertical-align: middle;
+    }
+  }
+  p{
+    font-size: 1em;
+    color: $silver;
+  }
+}

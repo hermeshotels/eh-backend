@@ -14,21 +14,35 @@ const mutations = {
   pushSession (state, session) {
     state.sessions.push(session)
   },
-  setSessionParams (state, params) {
+  setSessionParams (state, searchParams) {
     // trovo la sessione desiderata
     for (let i = 0; i < state.sessions.length; i++) {
-      if (state.sessions[i].id === params.id) {
+      if (state.sessions[i].id === searchParams.sessionid) {
         state.sessions[i].params = true
-        state.sessions[i].startDate = params.startDate
-        state.sessions[i].endDate = params.endDate
+        state.sessions[i].startDate = searchParams.startDate
+        state.sessions[i].endDate = searchParams.endDate
       }
     }
   },
-  removeSession (state, id) {
+  setSessionRooms (state, roomList) {
     for (let i = 0; i < state.sessions.length; i++) {
-      if (state.sessions[i].id === id) {
+      if (state.sessions[i].id === roomList.sessionid) {
+        state.sessions[i].rooms = roomList.rooms
+      }
+    }
+  },
+  removeSession (state, sessionid) {
+    for (let i = 0; i < state.sessions.length; i++) {
+      if (state.sessions[i].id === sessionid) {
         state.sessions.splice(i, 1)
-        break
+      }
+    }
+  },
+  pushMessage (state, message) {
+    console.log(message)
+    for (let i = 0; i < state.sessions.length; i++) {
+      if (state.sessions[i].id === message.sessionid) {
+        state.sessions[i].chat.push(message)
       }
     }
   }
