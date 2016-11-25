@@ -111,7 +111,7 @@
 import Page from './Page'
 export default {
   components: {
-    Page,
+    Page
   }
 }
 </script>
