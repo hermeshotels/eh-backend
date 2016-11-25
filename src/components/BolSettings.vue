@@ -108,22 +108,10 @@
 </template>
 
 <script>
-import { Chrome } from 'vue-color'
-import ColorSelector from './ColorSelector'
 import Page from './Page'
 export default {
-  data () {
-    return {
-      colors: {
-        hex: '#1565C0',
-        a: 1
-      }
-    }
-  },
   components: {
-    'chrome-picker': Chrome,
     Page,
-    ColorSelector
   }
 }
 </script>
