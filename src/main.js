@@ -6,6 +6,7 @@ import 'element-ui/lib/theme-default/index.css'
 import locale from 'element-ui/lib/locale'
 import VueRouter from 'vue-router'
 import App from './App'
+import SiteWrapper from './components/SiteWrapper'
 import Login from './components/Login'
 import Register from './components/Register'
 import SecureApp from './components/SecureApp'
@@ -23,6 +24,10 @@ Vue.use(VueHighcharts)
 const routes = [
   {
     path: '/',
+    component: SiteWrapper
+  },
+  {
+    path: '/login',
     component: Login
   },
   {

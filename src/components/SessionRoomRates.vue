@@ -12,8 +12,8 @@
       <div class="actions">
         <div class="valign-wrapper">
           <div class="valign">
-            <span class="price">300,00 €</span>
-            <i class="material-icons">mode_edit</i>
+            <span class="price">{{room.rates[0].price}}</span>
+            <i class="material-icons" @click="editroom(room.id, room.rates[0].id)">mode_edit</i>
             <i class="material-icons" @click="blinkroom(room.id)">flash_on</i>
           </div>
         </div>
@@ -32,7 +32,7 @@
             <div class="valign-wrapper">
               <div class="valign">
                 <span class="price">{{rate.price}} €</span>
-                <i class="material-icons">mode_edit</i>
+                <i class="material-icons" @click="editroom(room.id, rate.id)">mode_edit</i>
                 <i class="material-icons">flash_on</i>
               </div>
             </div>
@@ -53,7 +53,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      socket: 'getSocket'
+      socket: 'getSocket',
+      session: 'selectedSession'
     })
   },
   methods: {
@@ -62,6 +63,19 @@ export default {
       this.socket.emit('blink-room', {
         id: '121',
         roomid: roomid
+      })
+    },
+    editroom (roomid, rateid) {
+      this.$prompt('Inserisci il nuovo valore per la tariffa', 'Override', {
+        confirmButtonText: 'Invia',
+        cancelButtonText: 'Annulla'
+      }).then(value => {
+        this.socket.emit('new-room-rate', {
+          sessionid: this.session.id,
+          roomid: roomid,
+          rateid: rateid,
+          price: value
+        })
       })
     }
   },

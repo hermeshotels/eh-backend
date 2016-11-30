@@ -13,15 +13,18 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
-    "element-ui": "^1.0.0-rc.9",
+    "element-ui": "^1.0.3",
     "highcharts": "^5.0.2",
     "moment": "^2.15.2",
     "notifyjs": "^2.0.3",
+    "request": "^2.79.0",
     "socket.io": "^1.5.1",
+    "superagent": "^3.1.0",
     "vue": "^2.0.1",
     "vue-chartjs": "^2.1.1",
     "vue-color": "^2.0.2",
     "vue-highcharts": "0.0.9",
+    "vue-resource": "^1.0.3",
     "vue-router": "^2.0.1",
     "vue-socket.io": "^2.0.0",
     "vuex": "^2.0.0"

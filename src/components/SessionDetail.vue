@@ -1,109 +1,122 @@
 <template lang="html">
-  <div class="session-detail-wrapper">
-    <div class="no-session" v-if="session === null">
-      <div class="valign-wrapper">
-        <div class="valign">
-          <img src="../assets/ops.svg" alt="" />
-          <h1>
-            Oopss... <br>
-            <small>non hai selezionato nessuna sessione dal menù qui a sinistra! <br>
-               Se non ci sono sessioni disponibili sii paziente, presto arriveranno e ti avviseremo!</small>
-          </h1>
+  <page icon="info_outline" class="detail-wrapper">
+    <div slot="header">
+      <h1>
+        Dettaglio Sessione <br>
+        <small>gestisci la sessione in tempo reale</small>
+      </h1>
+    </div>
+    <div slot="content">
+
+      <div class="no-session" v-if="session === null">
+        <div class="valign-wrapper">
+          <div class="valign">
+            <img src="../assets/ops.svg" alt="" />
+            <h1>
+              Oopss... <br>
+              <small>non hai selezionato nessuna sessione dal menù qui a sinistra! <br>
+                 Se non ci sono sessioni disponibili sii paziente, presto arriveranno e ti avviseremo!</small>
+            </h1>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="session-info" v-if="session">
-      <el-row>
-        <el-col :span="24">
-          <h2>
-            Dettagli sessione Wanny Miarelli <br>
-            <small>gestisci la sessione in tempo reale</small>
-          </h2>
-          <el-button type="primary" class="chat-button" @click="chat"><i class="material-icons">chat_bubble</i> Avvia chat</el-button>
-        </el-col>
-      </el-row>
+      <div class="session-info" v-if="session">
 
-      <el-row>
-        <el-col :span="24">
-          <h4>
-            Dettaglio permanenza <br>
-            <small>parametri di ricerca dell'utente</small>
-          </h4>
-        </el-col>
-      </el-row>
+        <el-row>
+          <el-col :span="24">
+            <h4>
+              Dettaglio permanenza <br>
+              <small>parametri di ricerca dell'utente</small>
+            </h4>
+          </el-col>
+        </el-row>
 
-      <el-row>
-        <el-col :span="24">
-          <div class="session-info group">
-            <ul v-show="session.params">
-              <li>
-                <div class="label">
-                  ARRIVO
-                </div>
-                <div class="value">
-                  12 Ottobre 2016
-                </div>
-              </li>
-              <li>
-                <div class="label">
-                  PARTENZA
-                </div>
-                <div class="value">
-                  13 Ottobre 2016
-                </div>
-              </li>
-              <li>
-                <div class="label">
-                  OSPITI
-                </div>
-                <div class="value">
-                  2 Ad, 0 Bm, 1 Camera
-                </div>
-              </li>
-            </ul>
+        <el-row class="data">
+          <el-col :span="24">
+            <div class="session-info group">
+              <ul v-show="session.params">
+                <li>
+                  <div class="label">
+                    ARRIVO
+                  </div>
+                  <div class="value">
+                    {{fromDate}}
+                  </div>
+                </li>
+                <li>
+                  <div class="label">
+                    PARTENZA
+                  </div>
+                  <div class="value">
+                    {{toDate}}
+                  </div>
+                </li>
+                <li>
+                  <div class="label">
+                    OSPITI
+                  </div>
+                  <div class="value">
+                    2 Ad, 0 Bm, 1 Camera
+                  </div>
+                </li>
+              </ul>
 
-            <div class="no-params" v-show="!session.params">
-              L'utente non ha ancora impostato i parametri di ricerca.
+              <div class="no-params" v-show="!session.params">
+                L'utente non ha ancora impostato i parametri di ricerca.
+              </div>
             </div>
-          </div>
-        </el-col>
-      </el-row>
+          </el-col>
+        </el-row>
 
-      <el-row>
-        <el-col :span="24">
-          <h4>
-            Elenco camere e tariffe <br>
-            <small>elenco delle camere e tariffe inviate</small>
-          </h4>
-        </el-col>
-      </el-row>
+        <el-row>
+          <el-col :span="24">
+            <h4>
+              Elenco camere e tariffe <br>
+              <small>elenco delle camere e tariffe inviate</small>
+            </h4>
+          </el-col>
+        </el-row>
 
-      <el-row>
-        <el-col :span="24">
-          <session-room-rates v-show="session.rooms.length > 0" :rooms="session.rooms"></session-room-rates>
-          <div class="no-rooms" v-show="session.rooms.length <= 0">
-            L'utente non ha ancora ricevuto un elenco di offerte
-          </div>
-        </el-col>
-      </el-row>
+        <el-row class="data">
+          <el-col :span="24">
+            <session-room-rates v-show="session.rooms.length > 0" :rooms="session.rooms"></session-room-rates>
+            <div class="no-params" v-show="session.rooms.length <= 0">
+              L'utente non ha ancora ricevuto un elenco di offerte
+            </div>
+          </el-col>
+        </el-row>
+
+      </div>
 
     </div>
-
-  </div>
+  </page>
 </template>
 
 <script>
+import moment from 'moment'
+import Page from './Page'
 import SessionRoomRates from './SessionRoomRates'
 import { mapGetters } from 'vuex'
 export default {
   components: {
-    SessionRoomRates
+    SessionRoomRates,
+    Page
   },
   computed: {
     ...mapGetters({
       session: 'selectedSession'
-    })
+    }),
+    fromDate: function () {
+      if (this.session) {
+        return moment(this.session.startDate).format('L')
+      }
+    },
+    toDate: function () {
+      if (this.session) {
+        return moment(this.session.endDate).format('L')
+      }
+    }
   },
   methods: {
     chat () {
@@ -115,77 +128,57 @@ export default {
 
 <style lang="scss">
 @import '../assets/imports.scss';
-.session-detail-wrapper{
-  padding: 2em;
+.detail-wrapper{
   height: 100%;
-  h2{
-    margin: 0;
-    margin-bottom: 20px;
-    line-height: 20px;
-    small{
-      color: $silver;
+  .no-session{
+    padding-top: 3em;
+    text-align: center;
+    img{
+      width: 110px;
+      height: auto;
     }
-  }
-  h3{
-    margin-bottom: 20px;
-  }
-  h4{
-    font-size: 1.1em;
+    h1{
+      font-size: 1.8em;
+      color: $primary;
+      line-height: 25px;
+      small{
+        font-size: 70%;
+        color: $silver;
+      }
+    }
   }
   .session-info{
-    margin-bottom: 20px;
-    .no-params{
-      font-size: 1em;
-      font-weight: 500;
-      color: $warning;
+    h4{
+      margin: 0;
+      margin-bottom: 20px;
     }
-    > ul {
-      padding: 0;
+    .no-params{
+      color: $warning;
+      font-weight: 500;
+    }
+    ul{
       list-style: none;
-      width: 100%;
+      padding: 0;
+      margin: 0;
       li{
-        float: left;
-        margin-right: 40px;
+        display: inline-block;
+        margin-right: 5%;
+        &:last-child{
+          margin-right: 0;
+        }
         .label{
           color: $silver;
-          font-weight: 600;
+          font-weight: 500;
         }
         .value{
+          font-size: 1.2em;
           font-weight: 300;
         }
       }
     }
   }
-
-  .no-rooms{
-    font-size: 1em;
-    font-weight: 500;
-    color: $warning;
-  }
-
-  .no-session{
-    text-align: center;
-    height: 100%;
-    img{
-      width: 120px;
-    }
-    h1{
-      color: $primary;
-      line-height: 24px;
-      small{
-        font-size: 70%;
-        font-weight: 400;
-        color: $silver;
-        margin-top: 30px;
-        display: block;
-      }
-    }
-  }
-}
-
-.chat-button{
-  i{
-    font-size: 15px;
+  .data{
+    margin-bottom: 20px;
   }
 }
 </style>
