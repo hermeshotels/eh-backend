@@ -1,6 +1,5 @@
 import request from 'superagent'
-import config from '../assets/config'
-
+import config from '../../static/config.json'
 export default {
   register (payload, callback) {
     request
