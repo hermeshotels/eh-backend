@@ -16,7 +16,7 @@
 import notify from 'notifyjs'
 import SessionList from './SessionList'
 import SessionDetail from './SessionDetail'
-import config from '../assets/config'
+import config from '../../static/config.json'
 import Chat from './Chat'
 import { mapGetters, mapMutations } from 'vuex'
 import io from 'socket.io-client'
