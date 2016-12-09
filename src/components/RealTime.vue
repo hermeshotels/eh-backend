@@ -38,7 +38,7 @@ export default {
     const sessionid = Math.floor((Math.random() * 100) + 1)
     this.socket.emit('new-back-session', {
       'sessionid': sessionid,
-      'roomkey': 'sdadq'
+      'roomkey': '21312s'
     })
 
     this.socket.on('new-bol-session', (sessionData) => {
