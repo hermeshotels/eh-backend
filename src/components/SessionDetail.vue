@@ -29,6 +29,7 @@
               Dettaglio permanenza <br>
               <small>parametri di ricerca dell'utente</small>
             </h4>
+            <el-button @click="chat" type="primary" style="margin-bottom: 20px;">Avvia Chat</el-button>
           </el-col>
         </el-row>
 
