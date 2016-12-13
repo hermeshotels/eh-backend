@@ -4,15 +4,15 @@
       <el-col :span="12">
         <div class="text">
           <h1>
-            Il primo Booking Engine Realtime <br>
+            Il primo Booking Engine Real-Time <br>
             <small>entra in contatto con il tuo cliente.</small>
           </h1>
           <p>
-            Il primo Booking Engine al mondo con accesso realtime. Interagisci con il tuo cliente
+            Il primo Booking Engine al mondo con accesso real-time. Interagisci con il tuo cliente
             avvia una sessione di chat ed esegui override delle tariffe in tempo reale. <br>Tutto questo
             in un unica dashboard.
           </p>
-          <a href="#">Richiedi una demo <i class="material-icons">arrow_forward</i></a>
+          <a href="http://book.ermeshotels.com/#/hotel/1311/channel/138/language/2/rooms" target="_blank">Avvia la Demo <i class="material-icons">arrow_forward</i></a>
         </div>
       </el-col>
       <el-col :span="12">
