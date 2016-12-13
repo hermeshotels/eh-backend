@@ -8,11 +8,11 @@
       <el-col :span="12">
         <div class="text">
           <h2>
-            Gestione Realtime <br>
+            Gestione Real-Time <br>
             <small>tracciamento, chat, override prezzi.</small>
           </h2>
           <p>
-            Traccia l'utete in tempo reale, visualizza le offerte inviate, la posizione
+            Traccia l'utente in tempo reale, visualizza le offerte inviate, la posizione
             ed il tempo di connessione. Decidi quando e se interagire, potrai avviare
             una sessione di chat e modificare le tariffe in tempo reale.
           </p>
@@ -40,7 +40,7 @@
             <small>registra, analizza, semplifica.</small>
           </h2>
           <p>
-            Tutte le sessioni realtime vengono registrate e analizzate. Questi dati vengono successivamente elaborati e
+            Tutte le sessioni real-time vengono registrate e analizzate. Questi dati vengono successivamente elaborati e
             distribuiti in semplici report che ti aiuteranno ad impostare in modo ottimale la tua strategia di distribuzione onLine.
           </p>
         </div>
