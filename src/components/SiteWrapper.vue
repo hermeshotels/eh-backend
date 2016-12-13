@@ -12,9 +12,9 @@
             <small>tracciamento, chat, override prezzi.</small>
           </h2>
           <p>
-            Traccia il tuo utente in tempo reale. Visualizza le offerte inviate, la posizione
-            il tempo di connessione e decidi quando e se interagire con lui. Potrai avviare
-            una sessione di chat ed effettaure sconti diretti ed unici sulle tariffe.
+            Traccia l'utete in tempo reale, visualizza le offerte inviate, la posizione
+            ed il tempo di connessione. Decidi quando e se interagire, potrai avviare
+            una sessione di chat e modificare le tariffe in tempo reale.
           </p>
         </div>
       </el-col>
@@ -40,9 +40,8 @@
             <small>registra, analizza, semplifica.</small>
           </h2>
           <p>
-            Grazie al tracciamento RealTime il Booking Engine è in grado di registrare le azioni e le sessioni di ogni utente.
-            Questi dati verrano successivamente elaborati e visualizzati grazie a report semplificati che ti aiuteranno
-            ad impostare in modo corretto la tua strategia di distibuzione online.
+            Tutte le sessioni realtime vengono registrate e analizzate. Questi dati vengono successivamente elaborati e
+            distribuiti in semplici report che ti aiuteranno ad impostare in modo ottimale la tua strategia di distribuzione onLine.
           </p>
         </div>
       </el-col>
@@ -58,9 +57,8 @@
             <small>material design, responsive.</small>
           </h2>
           <p>
-            L'esperienza utente è imporante, per questo motivo l'intero booking engine rispetta la guida
-            di stile <strong><a href="https://material.google.com/" target="_blank">Material Design</a></strong> elaborata da Google.
-            Inoltre l'intera intefaccia grafica è adattabile ( responsive ) e quindi compatibile con la gran parte dei dispositivi mobili.
+            L'esperienza utente è tutto. Il Booking Engine rispetta la guida di stile <strong><a href="https://material.google.com/" target="_blank">Material Design</a></strong>
+            elaborata da Google. Inoltre l'intera interfaccia grafica è adattabile ( responsive ) e quindi compatibile con tutti i dispositivi mobili.
           </p>
         </div>
       </el-col>
@@ -78,7 +76,7 @@
         <div class="text">
           <h2>
             Personalizzazione Booking Engine <br>
-            <small>progetta, implementa, distrubisci.</small>
+            <small>progetta, implementa, distribuisci.</small>
           </h2>
           <p>
             La nuova API JSON permette di integrare in modo semplice tutti i nostri servizi all'interno delle tue applicazioni o siti web.
@@ -98,7 +96,11 @@
   </section>
 
   <footer>
-    ciao
+    <el-row type="flex" justify="center">
+      <el-col :span="4" class="logo">
+        ErmesHotels <br>
+      </el-col>
+    </el-row>
   </footer>
 
 </div>
@@ -230,9 +232,14 @@ section{
 }
 
 footer{
-  background-color: #080f0f;
-  padding-top: 60px;
-  padding-bottom: 60px;
+  background-color: #ebedf4;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  .logo{
+    font-weight: 600;
+    font-size: 1.1em;
+    color: #b9b9b9;
+  }
 }
 
 .doc-button{

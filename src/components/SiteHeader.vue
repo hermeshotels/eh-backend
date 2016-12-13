@@ -18,6 +18,7 @@ $header-height: 60px;
   height: 60px;
   padding-left: 1em;
   padding-right: 1em;
+  z-index: 9;
   .brand{
     color: #FFF;
     font-weight: 600;
