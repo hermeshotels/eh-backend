@@ -86,9 +86,9 @@
             usufruire dei servizi di sviluppo.
           </p>
 
-          <a href="#">
+          <!-- <a href="#">
             Documentazione API <i class="material-icons">arrow_forward</i>
-          </a>
+          </a> -->
         </div>
         <div class="image">
           <img src="../assets/developer.svg" alt="">
@@ -164,7 +164,7 @@ section{
     color: #FFF;
   }
   &.realtime{
-    background-color: #293b4f;
+    background: linear-gradient(to left bottom,#2f1847,#361f51,#5d3b7b,#a966ae);
     position: relative;
     .image{
       text-align: right;
@@ -175,7 +175,7 @@ section{
     }
   }
   &.data{
-    background-color: #1e2c3c;
+    background: linear-gradient(to right bottom,#101a26,#1a2838,#213244,#27384c);
     .image{
       text-align: center;
       img{
@@ -186,6 +186,7 @@ section{
   }
   &.responsive{
     background-color: #162638;
+    background: linear-gradient(to left bottom,#05284f,#093463,#0c3b70,#0e427c);
     .image{
       text-align: center;
     }
@@ -195,7 +196,7 @@ section{
     }
   }
   &.developer{
-    background-color: #fcfcfc;
+    background-color: #f3f6ff;
     .text{
       text-align: center;
       h2{
@@ -208,6 +209,14 @@ section{
       a{
         color: $success;
         text-decoration: none;
+        border: 2px solid $success;
+        border-radius: 30px;
+        padding: 1em;
+        transition: all 0.5s ease-in-out;
+        &:hover{
+          background: $success;
+          color: #FFF;
+        }
       }
     }
     .image{

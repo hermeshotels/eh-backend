@@ -2,16 +2,6 @@
 <div class="header-wrapper">
   <el-row>
     <el-col :span="6" class="brand">BookingOnLive</el-col>
-    <el-col :span="18" class="menu">
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Features</a></li>
-        <li><a href="#">Faq</a></li>
-        <li><a href="#">About</a></li>
-        <li><el-button type="success">Registrati</el-button></li>
-        <li><el-button type="info">Accedi</el-button></li>
-      </ul>
-    </el-col>
   </el-row>
 </div>
 </template>
@@ -23,6 +13,7 @@
 $header-height: 60px;
 .header-wrapper{
   position: fixed;
+  top: 0;
   width: 100%;
   height: 60px;
   padding-left: 1em;
