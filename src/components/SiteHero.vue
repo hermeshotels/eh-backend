@@ -13,6 +13,7 @@
             in un unica dashboard.
           </p>
           <a href="https://book.ermeshotels.com/#/hotel/1311/channel/138/language/2/rooms" target="_blank">Avvia la Demo <i class="material-icons">arrow_forward</i></a>
+          <a href="https://book.ermeshotels.com/#/docs" target="_blank">Guida <i class="material-icons">book</i></a>
         </div>
       </el-col>
       <el-col :span="12">
