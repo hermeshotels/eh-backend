@@ -12,7 +12,7 @@
             avvia una sessione di chat ed esegui override delle tariffe in tempo reale. <br>Tutto questo
             in un unica dashboard.
           </p>
-          <a href="http://book.ermeshotels.com/#/hotel/1311/channel/138/language/2/rooms" target="_blank">Avvia la Demo <i class="material-icons">arrow_forward</i></a>
+          <a href="https://book.ermeshotels.com/#/hotel/1311/channel/138/language/2/rooms" target="_blank">Avvia la Demo <i class="material-icons">arrow_forward</i></a>
         </div>
       </el-col>
       <el-col :span="12">
