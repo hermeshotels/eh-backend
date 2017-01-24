@@ -119,12 +119,13 @@ export default {
 
 <style lang="scss">
 @import '../assets/imports.scss';
-@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900');
+@import url('https://fonts.googleapis.com/css?family=Overpass:100,200,300,400,600,700,800');
 $ptop: 60px;
 $pbottom: 60px;
 $imageheight: 200px;
 html, body, #app{
   overflow-y: auto;
+  font-family: 'Overpass', sans-serif;
 }
 .fheight{
   height: 100%;
