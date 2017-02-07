@@ -13,7 +13,7 @@
             in un unica dashboard.
           </p>
           <a href="https://book.ermeshotels.com/#/hotel/1311/channel/138/language/2/rooms" target="_blank" style="margin-right: 10px;">Avvia la Demo <i class="material-icons">arrow_forward</i></a>
-          <a href="http://www.hermeshotels.it/galileo/demo/#/hotel/1308/channel/567/language/2/rooms" target="_blank">Demo Plugin <i class="material-icons">arrow_forward</i></a>
+          <a href="http://www.hermeshotels.it/galileo/demo/#/hotel/1311/channel/138/language/2/rooms" target="_blank">Demo Plugin <i class="material-icons">arrow_forward</i></a>
         </div>
       </el-col>
       <el-col :span="12">
