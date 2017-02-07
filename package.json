@@ -13,7 +13,7 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
-    "element-ui": "^1.0.3",
+    "element-ui": "^1.1.6",
     "highcharts": "^5.0.2",
     "moment": "^2.15.2",
     "notifyjs": "^2.0.3",
