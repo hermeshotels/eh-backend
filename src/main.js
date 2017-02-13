@@ -30,6 +30,7 @@ const routes = [
     component: SiteWrapper
   },
   {
+    name: 'login',
     path: '/login',
     component: Login
   },
@@ -40,13 +41,6 @@ const routes = [
   {
     path: '/secure',
     component: SecureApp,
-    beforeEnter: (to, from, next) => {
-      fireApp.firebaseApp.auth().onAuthStateChanged((user) => {
-        if (user) {
-          next()
-        }
-      })
-    },
     children: [
       {
         path: 'dashboard',
@@ -55,7 +49,8 @@ const routes = [
       {
         name: 'realtime',
         path: 'realtime',
-        component: RealTime
+        component: RealTime,
+        meta: { requiresAuth: true }
       },
       {
         path: 'api',
@@ -71,6 +66,23 @@ const routes = [
 
 const router = new VueRouter({
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    console.log('reserved')
+    fireApp.firebaseApp.auth().onAuthStateChanged((user) => {
+      if (!user) {
+        next({
+          name: 'login'
+        })
+      } else {
+        next()
+      }
+    })
+  } else {
+    next()
+  }
 })
 
 /* eslint-disable no-new */

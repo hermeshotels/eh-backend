@@ -29,7 +29,8 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import firebase from '../api/firebase.js'
+import {mapMutations} from 'vuex'
 export default {
   data () {
     return {
@@ -47,12 +48,21 @@ export default {
     }
   },
   methods: {
-    ...mapActions([
-      'login'
+    ...mapMutations([
+      'setUser',
+      'setUserData'
     ]),
     attempt () {
-      this.login(this.loginForm)
-      this.$router.push({name: 'realtime'})
+      this.loginProcess = true
+      firebase.login(this.loginForm, (error, user) => {
+        if (error) return console.log(error)
+        this.setUser(user)
+        firebase.db.ref('users/' + user.uid).once('value').then((snap) => {
+          this.setUserData(snap.val())
+          this.loginProcess = false
+          this.$router.push({name: 'realtime'})
+        })
+      })
     }
   }
 }

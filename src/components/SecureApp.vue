@@ -17,33 +17,9 @@
 
 <script>
 import UserBadge from './UserBadge'
-import {mapGetters, mapMutations} from 'vuex'
-import firebase from '../api/firebase.js'
 export default {
   components: {
     UserBadge
-  },
-  created () {
-    firebase.firebaseApp.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.setUser(user)
-        console.log(user)
-        firebase.db.ref('users/' + user.uid).once('value').then((snap) => {
-          this.setUserData(snap.val())
-        })
-      }
-    })
-  },
-  computed: {
-    ...mapGetters([
-      'getUser'
-    ])
-  },
-  methods: {
-    ...mapMutations([
-      'setUser',
-      'setUserData'
-    ])
   }
 }
 </script>
