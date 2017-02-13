@@ -10,9 +10,9 @@
           <small>ti stavamo aspettando</small>
         </h3>
 
-        <el-form class="login-form" ref="loginForm" :model="loginForm" :rules="loginRules">
+        <el-form class="login-form" ref="loginForm" :model="loginForm">
           <el-form-item label="Email" prop="email">
-            <el-input size="large" v-model="loginForm.email"></el-input>
+            <el-input type="text" size="large" v-model="loginForm.email"></el-input>
           </el-form-item>
           <el-form-item label="Password">
             <el-input size="large" type="password" v-model="loginForm.password" autocomplete="off"></el-input>

@@ -11,7 +11,7 @@
             La registrazione è riservata ai clienti ErmesHotels
           </p>
 
-          <el-form class="login-form" :model="upForm" :rules="upRules">
+          <el-form ref="upForm" class="login-form" :model="upForm" :rules="upRules">
             <el-form-item label="Email" prop="email">
               <el-input size="large" v-model="upForm.email"></el-input>
             </el-form-item>
