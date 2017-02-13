@@ -10,7 +10,7 @@
           <small>ti stavamo aspettando</small>
         </h3>
 
-        <el-form class="login-form" :model="loginForm" :rules="loginRules">
+        <el-form class="login-form" ref="loginForm" :model="loginForm" :rules="loginRules">
           <el-form-item label="Email" prop="email">
             <el-input size="large" v-model="loginForm.email"></el-input>
           </el-form-item>
