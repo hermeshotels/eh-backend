@@ -23,10 +23,11 @@ export default {
   components: {
     UserBadge
   },
-  mounted () {
+  created () {
     firebase.firebaseApp.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setUser(user)
+        console.log(user)
         firebase.db.ref('users/' + user.uid).once('value').then((snap) => {
           this.setUserData(snap.val())
         })
