@@ -13,7 +13,7 @@
         <div class="valign-wrapper">
           <div class="valign">
             <span class="price">{{room.rates[0].price}}</span>
-            <i class="material-icons" @click="editroom(roomIndex, 0)">mode_edit</i>
+            <i class="material-icons" @click="editroom(roomIndex, 0, room.rates[0])">mode_edit</i>
           </div>
         </div>
       </div>
@@ -31,7 +31,7 @@
             <div class="valign-wrapper">
               <div class="valign">
                 <span class="price">{{rate.price}} €</span>
-                <i class="material-icons" @click="editroom(roomIndex, rateIndex)">mode_edit</i>
+                <i class="material-icons" @click="editroom(roomIndex, rateIndex, rate)">mode_edit</i>
               </div>
             </div>
           </div>
@@ -65,7 +65,7 @@ export default {
         roomid: roomid
       })
     },
-    editroom (roomid, rateid) {
+    editroom (roomid, rateid, rateRef) {
       this.$prompt('Inserisci il nuovo valore per notte', 'Override', {
         confirmButtonText: 'Invia',
         cancelButtonText: 'Annulla'
@@ -83,6 +83,7 @@ export default {
             overrided: true,
             price: parseFloat(value.value * count)
           })
+          rateRef.price = parseFloat(value.value * count)
         })
       })
     }

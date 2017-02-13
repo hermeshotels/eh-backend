@@ -37,14 +37,14 @@
               Dettaglio permanenza <br>
               <small>parametri di ricerca dell'utente</small>
             </h4>
-            <el-button @click="chat" type="primary" style="margin-bottom: 20px;">Avvia Chat</el-button>
+            <el-button @click="openchat" type="primary" style="margin-bottom: 20px;">Avvia Chat</el-button>
           </el-col>
         </el-row>
 
         <el-row class="data">
           <el-col :span="24">
             <div class="session-info group">
-              <ul v-show="session.params">
+              <ul v-show="session.filters">
                 <li>
                   <div class="label">
                     ARRIVO
@@ -71,7 +71,7 @@
                 </li>
               </ul>
 
-              <div class="no-params" v-show="!session.params">
+              <div class="no-params" v-show="!session.filters">
                 L'utente non ha ancora impostato i parametri di ricerca.
               </div>
             </div>
@@ -153,7 +153,7 @@ export default {
     }
   },
   methods: {
-    chat () {
+    openchat () {
       this.$emit('start-chat')
     }
   }
