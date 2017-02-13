@@ -1,10 +1,21 @@
-import userService from '../../api/user.js'
+import firebaseApi from '../../api/firebase.js'
+import localStorage from 'localStorage'
 
 const state = {
   user: null,
+  userData: null,
   auth: false,
   registerError: false,
   registrationSuccess: false
+}
+
+const getters = {
+  getUser (state) {
+    return state.user
+  },
+  getUserData (state) {
+    return state.userData
+  }
 }
 
 const mutations = {
@@ -12,8 +23,16 @@ const mutations = {
     state.auth = false
     state.user = null
   },
+  setUser (state, user) {
+    state.user = user
+  },
+  setUserData (state, data) {
+    state.userData = data
+    localStorage.setItem('hotel', data.hotel)
+  },
   loginSuccess (state, data) {
-
+    state.user = data
+    state.auth = true
   },
   registerError (state) {
     state.auth = false
@@ -27,12 +46,18 @@ const mutations = {
 
 const actions = {
   register ({commit, state}, payload) {
-    userService.register(payload, (error, data) => {
+    firebaseApi.register(payload, (error, user) => {
       if (error) {
         commit('registerError')
       } else {
-        commit('registerSuccess', data)
+        commit('registerSuccess', user)
       }
+    })
+  },
+  login ({commit}, payload) {
+    firebaseApi.login(payload, (error, user) => {
+      if (error) return commit('loginError')
+      commit('loginSuccess', user)
     })
   }
 }
@@ -40,5 +65,6 @@ const actions = {
 export default {
   state,
   mutations,
-  actions
+  actions,
+  getters
 }

@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="session-wrapper group" @click="setSession(session)" :class="{ current: session === selectedSession}">
-    <div class="session-messages" v-if="session.chat.length">
+    <div class="session-messages" v-if="session.chat && session.chat.length">
       <i class="material-icons">chat_bubble</i>
       <span class="msg-count">{{session.chat.length}}</span>
     </div>
@@ -10,7 +10,7 @@
     <div class="session-data">
       <div class="valign-wrapper">
         <div class="valign">
-          <span class="username">{{session.username}}</span><br>
+          <span class="username">Utente</span><br>
           <span class="user-status">{{session.status}}</span>
         </div>
       </div>

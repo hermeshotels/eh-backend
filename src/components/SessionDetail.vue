@@ -12,11 +12,11 @@
         <div class="valign-wrapper">
           <div class="valign">
             <img src="../assets/ops.svg" alt="" />
-            <h1>
+            <h3>
               Oopss... <br>
               <small>non hai selezionato nessuna sessione dal menù qui a sinistra! <br>
                  Se non ci sono sessioni disponibili sii paziente, presto arriveranno e ti avviseremo!</small>
-            </h1>
+            </h3>
           </div>
         </div>
       </div>
@@ -129,8 +129,12 @@ export default {
 
 <style lang="scss">
 @import '../assets/imports.scss';
+.content{
+  overflow: hidden;
+}
 .detail-wrapper{
   height: 100%;
+  overflow: auto;
   .no-session{
     padding-top: 3em;
     text-align: center;
@@ -138,7 +142,7 @@ export default {
       width: 110px;
       height: auto;
     }
-    h1{
+    h3{
       font-size: 1.8em;
       color: $primary;
       line-height: 25px;
@@ -149,6 +153,7 @@ export default {
     }
   }
   .session-info{
+    overflow: hidden;
     h4{
       margin: 0;
       margin-bottom: 20px;

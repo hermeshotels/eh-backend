@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="messages group" id="messages" v-if="session">
-        <div class="message" :class="{ me: msg.from === 'back', him: msg.from === 'front' }" v-for="msg in session.chat">
+        <div class="message" :class="{ me: msg.from === 'back', him: msg.from === 'front' }" v-for="msg in messages">
           <span class="text">{{msg.message}}</span>
         </div>
       </div>
@@ -38,10 +38,17 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
+import firebase from '../api/firebase.js'
+import localStorage from 'localStorage'
 export default {
   data () {
     return {
       message: ''
+    }
+  },
+  firebase () {
+    return {
+      messages: firebase.db.ref(`${localStorage.getItem('hotel')}/sessions/${this.session['.key']}/chat`)
     }
   },
   props: {
@@ -52,7 +59,6 @@ export default {
   },
   computed: {
     ...mapGetters({
-      socket: 'getSocket',
       session: 'selectedSession'
     })
   },
@@ -73,13 +79,10 @@ export default {
     },
     sendMessage () {
       let msg = {
-        sessionid: this.session.id,
-        to: this.session.id,
         message: this.message,
         from: 'back'
       }
-      this.socket.emit('new-message', msg)
-      this.pushMessage(msg)
+      this.$firebaseRefs.messages.push(msg)
       this.message = ''
     }
   }
@@ -154,7 +157,7 @@ export default {
   .messages{
     padding: 1em;
     position: relative;
-    overflow: scroll;
+    overflow-y: auto;
     height: 80%;
     width: 100%;
     z-index: 1;

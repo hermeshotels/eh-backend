@@ -15,11 +15,14 @@ import RealTime from './components/RealTime'
 import ApiManager from './components/ApiManager'
 import BolSettings from './components/BolSettings'
 import store from './store'
+import VueFire from 'vuefire'
+import fireApp from './api/firebase.js'
 
 Vue.use(VueRouter)
 locale.use(lang)
 Vue.use(Element)
 Vue.use(VueHighcharts)
+Vue.use(VueFire)
 
 const routes = [
   {
@@ -37,12 +40,20 @@ const routes = [
   {
     path: '/secure',
     component: SecureApp,
+    beforeEnter: (to, from, next) => {
+      fireApp.firebaseApp.auth().onAuthStateChanged((user) => {
+        if (user) {
+          next()
+        }
+      })
+    },
     children: [
       {
         path: 'dashboard',
         component: Dashboard
       },
       {
+        name: 'realtime',
         path: 'realtime',
         component: RealTime
       },

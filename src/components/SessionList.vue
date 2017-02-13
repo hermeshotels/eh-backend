@@ -10,21 +10,42 @@
         </div>
       </div>
     </div>
-    <session v-for="session in sessions" :session="session" :key="session.id"></session>
+    <session v-for="session in sessions" :session="session"></session>
   </div>
 </template>
 
 <script>
+import notify from 'notifyjs'
 import Session from './Session'
-import { mapGetters } from 'vuex'
+import firebase from '../api/firebase.js'
+import {mapGetters} from 'vuex'
+import localStorage from 'localStorage'
+const Notificator = notify.default
 export default {
   components: {
     Session
   },
-  computed: {
-    ...mapGetters({
-      sessions: 'getAllSessions'
+  mounted () {
+    if (notify.default.needsPermission) {
+      notify.default.requestPermission()
+    }
+    this.$firebaseRefs.sessions.on('child_added', (snapshot) => {
+      let not = new Notificator('Nuovo utente', {
+        body: 'un nuovo utente si è connesso al bol'
+      })
+      not.show()
     })
+  },
+  firebase () {
+    return {
+      sessions: firebase.db.ref(`${localStorage.getItem('hotel')}/sessions`)
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'getUser',
+      'getUserData'
+    ])
   }
 }
 </script>

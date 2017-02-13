@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="room-rates-wrapper">
-    <div class="room group" v-for="room in rooms">
+    <div class="room group" v-for="(room, roomIndex) in rooms">
       <div class="detail">
         <div class="valign-wrapper">
           <div class="valign">
@@ -13,12 +13,11 @@
         <div class="valign-wrapper">
           <div class="valign">
             <span class="price">{{room.rates[0].price}}</span>
-            <i class="material-icons" @click="editroom(room.id, room.rates[0].id)">mode_edit</i>
-            <i class="material-icons" @click="blinkroom(room.id)">flash_on</i>
+            <i class="material-icons" @click="editroom(roomIndex, 0)">mode_edit</i>
           </div>
         </div>
       </div>
-      <div class="more-rates" v-for="rate in room.rates" v-show="showRates">
+      <div class="more-rates" v-for="(rate, rateIndex) in room.rates" v-show="showRates">
         <div class="rate group">
           <div class="detail">
             <div class="valign-wrapper">
@@ -32,8 +31,7 @@
             <div class="valign-wrapper">
               <div class="valign">
                 <span class="price">{{rate.price}} €</span>
-                <i class="material-icons" @click="editroom(room.id, rate.id)">mode_edit</i>
-                <i class="material-icons">flash_on</i>
+                <i class="material-icons" @click="editroom(roomIndex, rateIndex)">mode_edit</i>
               </div>
             </div>
           </div>
@@ -45,6 +43,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import firebase from '../api/firebase.js'
+import localStorage from 'localStorage'
 export default {
   data () {
     return {
@@ -66,15 +66,22 @@ export default {
       })
     },
     editroom (roomid, rateid) {
-      this.$prompt('Inserisci il nuovo valore per la tariffa', 'Override', {
+      this.$prompt('Inserisci il nuovo valore per notte', 'Override', {
         confirmButtonText: 'Invia',
         cancelButtonText: 'Annulla'
       }).then(value => {
-        this.socket.emit('new-room-rate', {
-          sessionid: this.session.id,
-          roomid: roomid,
-          rateid: rateid,
-          price: value
+        let count = 0
+        let rate = firebase.db.ref(`${localStorage.getItem('hotel')}/sessions/${this.session['.key']}/rooms/${roomid}/rates/${rateid}`)
+        rate.child('prices').once('value').then((snap) => {
+          var updates = {}
+          snap.forEach((child) => {
+            updates[child.key + '/price'] = parseFloat(value.value)
+            count++
+          })
+          rate.child('prices').update(updates)
+          rate.update({
+            price: parseFloat(value.value * count)
+          })
         })
       })
     }
@@ -95,6 +102,7 @@ export default {
     background: #FFF;
     border-radius: 4px;
     box-shadow: $card-shadow-2;
+    margin-bottom: 15px;
     .detail, .actions{
       float: left;
       height: 70px;

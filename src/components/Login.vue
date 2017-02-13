@@ -15,10 +15,10 @@
             <el-input size="large" v-model="loginForm.email"></el-input>
           </el-form-item>
           <el-form-item label="Password">
-            <el-input size="large" type="password" autocomplete="off"></el-input>
+            <el-input size="large" type="password" v-model="loginForm.password" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item class="text-center">
-            <el-button type="primary" size="large" @click.native.prevent="login" :loading="loginProcess">Accedi</el-button>
+            <el-button type="primary" size="large" @click.native.prevent="attempt" :loading="loginProcess">Accedi</el-button>
             <el-button type="text">Password smarrita?</el-button>
             <el-button type="text" class="register">Sei nuovo? Registrati!</el-button>
           </el-form-item>
@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 export default {
   data () {
     return {
@@ -46,8 +47,12 @@ export default {
     }
   },
   methods: {
-    login () {
-      this.loginProcess = true
+    ...mapActions([
+      'login'
+    ]),
+    attempt () {
+      this.login(this.loginForm)
+      this.$router.push({name: 'realtime'})
     }
   }
 }

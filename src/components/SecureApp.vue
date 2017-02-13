@@ -6,14 +6,7 @@
         ERMESHOTELS
       </div>
       <el-menu default-active="1" :router="true" :unique-opened="true">
-        <el-menu-item index="1" :route="{ path: '/secure/dashboard' }"><i class="material-icons">dashboard</i> DASHBOARD</el-menu-item>
-        <el-submenu index="2">
-          <template slot="title"><i class="material-icons">view_list</i> BOL</template>
-          <el-menu-item index="2" :route="{ path: '/secure/bol/settings' }"><i class="material-icons">settings_brightness</i> Aspetto</el-menu-item>
-          <el-menu-item index="3"><i class="material-icons">multiline_chart</i> Analisi</el-menu-item>
-          <el-menu-item index="4" :route="{ path: '/secure/realtime' }"><i class="material-icons">timelapse</i> RealTime</el-menu-item>
-        </el-submenu>
-        <el-menu-item index="6" :route="{ path: '/secure/api' }"><i class="material-icons">import_export</i> API</el-menu-item>
+        <el-menu-item index="4" :route="{ path: '/secure/realtime' }"><i class="material-icons">timelapse</i> RealTime</el-menu-item>
       </el-menu>
     </el-col>
     <el-col :span="19" class="views fheight">
@@ -24,9 +17,32 @@
 
 <script>
 import UserBadge from './UserBadge'
+import {mapGetters, mapMutations} from 'vuex'
+import firebase from '../api/firebase.js'
 export default {
   components: {
     UserBadge
+  },
+  mounted () {
+    firebase.firebaseApp.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setUser(user)
+        firebase.db.ref('users/' + user.uid).once('value').then((snap) => {
+          this.setUserData(snap.val())
+        })
+      }
+    })
+  },
+  computed: {
+    ...mapGetters([
+      'getUser'
+    ])
+  },
+  methods: {
+    ...mapMutations([
+      'setUser',
+      'setUserData'
+    ])
   }
 }
 </script>
