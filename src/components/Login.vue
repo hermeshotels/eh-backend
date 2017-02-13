@@ -11,7 +11,7 @@
         </h3>
 
         <el-form class="login-form" ref="loginForm" :model="loginForm">
-          <el-form-item label="Email" prop="email">
+          <el-form-item label="Email">
             <el-input type="text" size="large" v-model="loginForm.email"></el-input>
           </el-form-item>
           <el-form-item label="Password">
