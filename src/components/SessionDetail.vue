@@ -5,6 +5,14 @@
         Dettaglio Sessione <br>
         <small>gestisci la sessione in tempo reale</small>
       </h1>
+      <div class="chat-status" style="position: absolute; right: 30px; top: 30%;">
+        Stato Chat
+        <el-switch
+          v-model="chat"
+          on-text="live"
+          off-text="off">
+        </el-switch>
+      </div>
     </div>
     <div slot="content">
 
@@ -99,10 +107,35 @@ import moment from 'moment'
 import Page from './Page'
 import SessionRoomRates from './SessionRoomRates'
 import { mapGetters } from 'vuex'
+import firebase from '../api/firebase.js'
+import localStorage from 'localStorage'
 export default {
   components: {
     SessionRoomRates,
     Page
+  },
+  data () {
+    return {
+      chat: false
+    }
+  },
+  mounted () {
+    firebase.db.ref(localStorage.getItem('hotel')).once('value').then((snap) => {
+      this.chat = snap.val().chat
+    })
+  },
+  watch: {
+    'chat': function (chatStatus) {
+      if (chatStatus) {
+        firebase.db.ref(localStorage.getItem('hotel')).update({
+          chat: true
+        })
+      } else {
+        firebase.db.ref(localStorage.getItem('hotel')).update({
+          chat: false
+        })
+      }
+    }
   },
   computed: {
     ...mapGetters({

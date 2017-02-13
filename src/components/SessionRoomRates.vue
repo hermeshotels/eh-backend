@@ -80,6 +80,7 @@ export default {
           })
           rate.child('prices').update(updates)
           rate.update({
+            overrided: true,
             price: parseFloat(value.value * count)
           })
         })
