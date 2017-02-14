@@ -17,9 +17,8 @@
 <script>
 import notify from 'notifyjs'
 import Session from './Session'
-import firebase from '../api/firebase.js'
+import ermFirebase from '../ermFirebase.js'
 import {mapGetters} from 'vuex'
-import localStorage from 'localStorage'
 const Notificator = notify.default
 export default {
   components: {
@@ -29,7 +28,7 @@ export default {
     if (notify.default.needsPermission) {
       notify.default.requestPermission()
     }
-    this.$firebaseRefs.sessions.on('child_added', (snapshot) => {
+    ermFirebase.sessionRef.on('child_added', (snapshot) => {
       let not = new Notificator('Nuovo utente', {
         body: 'un nuovo utente si è connesso al bol'
       })
@@ -38,7 +37,7 @@ export default {
   },
   firebase () {
     return {
-      sessions: firebase.db.ref(`${localStorage.getItem('hotel')}/sessions`)
+      sessions: ermFirebase.sessionRef
     }
   },
   computed: {

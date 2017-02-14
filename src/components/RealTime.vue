@@ -16,8 +16,12 @@
 import SessionList from './SessionList'
 import SessionDetail from './SessionDetail'
 import Chat from './Chat'
+import ermFirebase from '../ermFirebase.js'
 
 export default {
+  beforeCreate () {
+    ermFirebase.setup()
+  },
   components: {
     SessionList,
     SessionDetail,

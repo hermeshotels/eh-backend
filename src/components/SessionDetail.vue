@@ -109,8 +109,7 @@ import moment from 'moment'
 import Page from './Page'
 import SessionRoomRates from './SessionRoomRates'
 import { mapGetters } from 'vuex'
-import firebase from '../api/firebase.js'
-import localStorage from 'localStorage'
+import ermFirebase from '../ermFirebase.js'
 export default {
   components: {
     SessionRoomRates,
@@ -122,21 +121,13 @@ export default {
     }
   },
   mounted () {
-    firebase.db.ref(localStorage.getItem('hotel')).once('value').then((snap) => {
-      this.chat = snap.val().chat
+    ermFirebase.getChatStatus((status) => {
+      this.chat = status
     })
   },
   watch: {
     'chat': function (chatStatus) {
-      if (chatStatus) {
-        firebase.db.ref(localStorage.getItem('hotel')).update({
-          chat: true
-        })
-      } else {
-        firebase.db.ref(localStorage.getItem('hotel')).update({
-          chat: false
-        })
-      }
+      ermFirebase.setChatStatus(chatStatus)
     }
   },
   computed: {

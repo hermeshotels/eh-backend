@@ -43,8 +43,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import firebase from '../api/firebase.js'
-import localStorage from 'localStorage'
+import ermFirebase from '../ermFirebase.js'
 export default {
   data () {
     return {
@@ -70,21 +69,7 @@ export default {
         confirmButtonText: 'Invia',
         cancelButtonText: 'Annulla'
       }).then(value => {
-        let count = 0
-        let rate = firebase.db.ref(`${localStorage.getItem('hotel')}/sessions/${this.session['.key']}/rooms/${roomid}/rates/${rateid}`)
-        rate.child('prices').once('value').then((snap) => {
-          var updates = {}
-          snap.forEach((child) => {
-            updates[child.key + '/price'] = parseFloat(value.value)
-            count++
-          })
-          rate.child('prices').update(updates)
-          rate.update({
-            overrided: true,
-            price: parseFloat(value.value * count)
-          })
-          rateRef.price = parseFloat(value.value * count)
-        })
+        ermFirebase.setNewRatePrice(this.session['.key'], roomid, rateid, value.value, rateRef)
       })
     }
   },

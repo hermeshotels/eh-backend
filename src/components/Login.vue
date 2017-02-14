@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import firebase from '../api/firebase.js'
+import ermFirebase from '../ermFirebase.js'
 import {mapMutations} from 'vuex'
 export default {
   data () {
@@ -54,11 +54,11 @@ export default {
     ]),
     attempt () {
       this.loginProcess = true
-      firebase.login(this.loginForm, (error, user) => {
+      ermFirebase.login(this.loginForm, (error, user) => {
         if (error) return console.log(error)
         this.setUser(user)
-        firebase.db.ref('users/' + user.uid).once('value').then((snap) => {
-          this.setUserData(snap.val())
+        ermFirebase.getUserData(user, (error, response) => {
+          if (error) return console.log(error)
           this.loginProcess = false
           this.$router.push({name: 'realtime'})
         })

@@ -16,7 +16,7 @@ import ApiManager from './components/ApiManager'
 import BolSettings from './components/BolSettings'
 import store from './store'
 import VueFire from 'vuefire'
-import fireApp from './api/firebase.js'
+import ermFirebase from './ermFirebase.js'
 
 Vue.use(VueRouter)
 locale.use(lang)
@@ -70,9 +70,8 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    console.log('reserved')
-    fireApp.firebaseApp.auth().onAuthStateChanged((user) => {
-      if (!user) {
+    ermFirebase.getAuthStatus((error, success) => {
+      if (error) {
         next({
           name: 'login'
         })

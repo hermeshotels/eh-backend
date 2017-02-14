@@ -24,8 +24,7 @@
 <script>
 import moment from 'moment'
 import { mapGetters, mapMutations } from 'vuex'
-import firebase from '../api/firebase.js'
-import localStorage from 'localStorage'
+import ermFirebase from '../ermFirebase.js'
 export default {
   props: {
     session: {
@@ -35,7 +34,7 @@ export default {
   },
   firebase () {
     return {
-      messages: firebase.db.ref(`${localStorage.getItem('hotel')}/sessions/${this.session['.key']}/chat`)
+      messages: ermFirebase.getChatRef(this.session['.key'])
     }
   },
   computed: {

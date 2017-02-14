@@ -1,5 +1,4 @@
 import firebaseApi from '../../api/firebase.js'
-import localStorage from 'localStorage'
 
 const state = {
   user: null,
@@ -29,7 +28,6 @@ const mutations = {
   setUserData (state, data) {
     state.userData = data
     console.log(data.hotel)
-    localStorage.setItem('hotel', data.hotel)
   },
   loginSuccess (state, data) {
     state.user = data
