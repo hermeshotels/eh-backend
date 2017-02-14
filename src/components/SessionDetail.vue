@@ -145,12 +145,12 @@ export default {
     }),
     fromDate: function () {
       if (this.session) {
-        return moment(this.session.startDate).format('L')
+        return moment(this.session.filters.arrival).format('L')
       }
     },
     toDate: function () {
       if (this.session) {
-        return moment(this.session.endDate).format('L')
+        return moment(this.session.filters.departure).format('L')
       }
     }
   },
