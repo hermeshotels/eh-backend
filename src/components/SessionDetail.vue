@@ -89,8 +89,10 @@
 
         <el-row class="data">
           <el-col :span="24">
-            <session-room-rates v-show="session.rooms.length > 0" :rooms="session.rooms"></session-room-rates>
-            <div class="no-params" v-show="session.rooms.length <= 0">
+            <div v-if="session.rooms">
+              <session-room-rates v-show="session.rooms.length > 0" :rooms="session.rooms"></session-room-rates>
+            </div>
+            <div class="no-params" v-if="session.rooms" v-show="session.rooms.length <= 0">
               L'utente non ha ancora ricevuto un elenco di offerte
             </div>
           </el-col>
